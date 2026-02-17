@@ -50,16 +50,16 @@ We developed our model in Python 3.11.8, using Tensorflow [AAB+15] and Keras [C+
 As in [BCG+25], we point out that when implementing our model, some implementation tricks are considered.
 First, a particular attention on variances weights is required regarding their initialization and updating in order to ensure a proper model working.
 Indeed, we initially set them to 1 and add a custom constraint during their updating that forces these weights to be always positive. 
-Regarding layers estimating $\hat{\Psi}_\phi(Y^k)$ and $\hat{\Psi}_\theta(Y^k)$ for each key hypothesis $k\in\mathcal{K}$, we implement these dense layers such as biases are removed since biases term are already included in Walsh-Hadamard basis decomposition of sensitive values.
+Regarding layers estimating $\Psi_\phi(Y^k)$ and $\Psi_\theta(Y^k)$ for each key hypothesis $k\in\mathcal{K}$, we implement these dense layers such as biases are removed since biases term are already included in Walsh-Hadamard basis decomposition of sensitive values.
 Moreover, as $(\mu_\phi)^k$ and $(\sigma^2_\phi)^k$ must converge respectively towards $D$ and $2D$ (see Section 3.2 and Equation 6 in our paper), we only estimate weights related to $(\mu_\phi)^k$ and then, use those estimations to compute $(\sigma^2_\phi)^k$ instead of re-estimating $(\sigma^2_\phi)^k$ weights.
 This allows to reduce the number of trainable parameters by $D$ (with $D$ being  traces dimension) for each key hypothesis $k$.
-Similarly, following Theorem 3 in our paper, we estimate weights related to $(\mu_\phi)^{k_0}$ for the first key hypothesis $k_0$ namely $(\hat{\sigma}^2_\phi)^{k_0}_i$ and then re-use those estimated weights for all other key hypotheses.
-Indeed all $(\hat{\sigma}^2_\phi)^{k}_i$ converge for all samples towards the true variance $\sigma^2_i$ of the input trace $\mathbf{T}$, regardless of the key hypothesis considered.
+Similarly, following Theorem 3 in our paper, we estimate weights related to $(\mu_\phi)^{k_0}$ for the first key hypothesis $k_0$ namely $(\hat{\sigma}^2_\phi)^{k_0}$ and then re-use those estimated weights for all other key hypotheses.
+Indeed all $(\hat{\sigma}^2_\phi)^{k}$ converge for all samples towards the true variance $\sigma^2_i$ of the input trace $T$, regardless of the key hypothesis considered.
 This allows us therefore to reach complexity presented in Proposition 1 of our paper.
-Finally, for convenience, we scaled the reconstruction loss term by a factor $\frac{1}{|\mathcal{K}|}$ (see Proposition 2 of our paper) \ie instead of summing over $k\in\mathcal{K}$, we consider the empirical mean over $k$.
+Finally, for convenience, we scaled the reconstruction loss term by a factor $\frac{1}{|\mathcal{K}|}$ (see Proposition 2 of our paper) i.e. instead of summing over $k\in\mathcal{K}$, we consider the empirical mean over $k$.
 Note that adding this multiplicative constant does not invalidate variational lower bound on the conditional marginal likelihood in  Theorem 2 in our paper.
 To ensure proper weights convergence for all key hypotheses, we apply gradients locally in our model.
-In other words, for a given key hypothesis $k$, gradients are computed considering the sum of the KL-divergence loss term and the corresponding reconstruction sub-loss (\ie $\mathbb{E}_{\mathbf{z}\sim E_\phi}\big[\log\big(\mathbb{P}(\mathbf{T}|Y^k,\mathbf{z},\theta)\big)\big]$, see Proposition 2 in our paper).
+In other words, for a given key hypothesis $k$, gradients are computed considering the sum of the KL-divergence loss term and the corresponding reconstruction sub-loss (i.e. $\mathbb{E}_{z \sim E_\phi}[\log(\mathbb{P}(T|Y^k,z,\theta))]$, see Proposition 2 in our paper).
 Then, these gradients are applied on a graph sub-portion that involves weights related to $k$.
 
 <a id="npcvaeosm-picture"></a>
@@ -175,4 +175,5 @@ If you use our code, model or wish to refer to our results, please use the follo
 [GHMR17]  Sylvain Guilley, Annelie Heuser, Tang Ming, and Olivier Rioul. Stochastic side-channel leakage analysis via orthonormal decomposition. In Innovative Security Solutions for Information Technology and Communications: 10th International Conference, SecITC 2017, Bucharest, Romania, June 8–9, 2017, Revised Selected Papers 10, pages 12–27. Springer, 2017.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
