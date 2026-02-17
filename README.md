@@ -2,7 +2,7 @@
 
 <a id="readme-top"></a>
 
-This Git repository is associated with the article *From linear regression to generative model for explainable non profiled side-channel attacks* available on ```TODO``` .
+This Git repository is associated with the article *From linear regression to generative model for explainable non profiled side-channel attacks* available on [Cryptology ePrint Archive](https://eprint.iacr.org/2026/274).
 
 <!-- Table of contents -->
 <details>
@@ -153,7 +153,13 @@ For convenience, we provide the pip command below.
 
 If you use our code, model or wish to refer to our results, please use the following BibTex entry:
 ```
-TODO
+@misc{cryptoeprint:2026/274,
+      author = {Sana Boussam and Mathieu Carbone and Benoît Gérard and Guénaël Renault and Gabriel Zaid},
+      title = {From linear regression to generative model for explainable non profiled side-channel attacks},
+      howpublished = {Cryptology {ePrint} Archive, Paper 2026/274},
+      year = {2026},
+      url = {https://eprint.iacr.org/2026/274}
+}
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -169,3 +175,4 @@ TODO
 [GHMR17]  Sylvain Guilley, Annelie Heuser, Tang Ming, and Olivier Rioul. Stochastic side-channel leakage analysis via orthonormal decomposition. In Innovative Security Solutions for Information Technology and Communications: 10th International Conference, SecITC 2017, Bucharest, Romania, June 8–9, 2017, Revised Selected Papers 10, pages 12–27. Springer, 2017.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
