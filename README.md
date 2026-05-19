@@ -106,6 +106,7 @@ The chosen range for the random search optimization has been arbitrarily defined
 - Learning rate is in range $[0.001, 0.01]$;
 - The batch size is in range $[2, 4, 8, 16, 32, 64]$;
 - The number of epochs is in range $[10, 25, 50, 75, 100]$.
+  
 For reproducibility, we report in the following table the hyperparameter settings used for all datasets to produce the results presented in this paper.
 
 However, it should be noted that no work has been done to optimize the hyperparameters considered for NPcVAE-OSM.
